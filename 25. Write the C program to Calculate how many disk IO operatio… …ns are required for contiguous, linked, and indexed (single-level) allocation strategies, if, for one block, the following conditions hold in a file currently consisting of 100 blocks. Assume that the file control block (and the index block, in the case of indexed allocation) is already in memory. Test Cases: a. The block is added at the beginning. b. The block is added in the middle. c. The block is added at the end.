@@ -1,0 +1,22 @@
+#include <stdio.h>
+int main()
+{
+    int num_blocks = 100;
+    int block_size = 1024; 
+    int file_size = num_blocks * block_size; 
+    int num_contiguous_io = 1;
+    if (file_size > block_size) 
+	{
+        num_contiguous_io += file_size / block_size;
+    }
+    int num_linked_io = 1; 
+    num_linked_io += num_blocks;
+    int index_block_size = 128;  
+    int num_index_blocks = num_blocks / (index_block_size / sizeof(int));
+    int num_indexed_io = 1;  
+    num_indexed_io += num_index_blocks; 
+ printf("Number of disk I/O operations for Contiguous Allocation: %d\n", num_contiguous_io);
+    printf("Number of disk I/O operations for Linked Allocation: %d\n", num_linked_io);
+    printf("Number of disk I/O operations for Indexed Allocation (Single-Level): %d\n", num_indexed_io);
+    return 0;
+}
