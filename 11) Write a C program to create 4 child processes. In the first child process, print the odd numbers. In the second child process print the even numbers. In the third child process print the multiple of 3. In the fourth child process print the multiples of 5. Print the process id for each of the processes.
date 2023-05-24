@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <unistd.h>
+int odd_numbers() 
+{
+    int i;
+	for (i = 1; i <= 100; i += 2) 
+	{
+        printf("Child process (odd numbers) with ID %d: %d\n", getpid(), i);
+    }
+}
+int even_numbers() 
+{
+    int i;
+	for (i = 2; i <= 100; i += 2) 
+	{
+        printf("Child process (even numbers) with ID %d: %d\n", getpid(), i);
+    }
+}
+int multiples_of_3() 
+{
+    int i;
+	for (i = 3; i <= 100; i += 3) 
+	{
+        printf("Child process (multiples of 3) with ID %d: %d\n", getpid(), i);
+    }
+}
+int multiples_of_5() 
+{
+	int i;
+    for (i = 5; i <= 100; i += 5) 
+	{
+        printf("Child process (multiples of 5) with ID %d: %d\n", getpid(), i);
+    }
+}
+int main() 
+{
+    int pid_t,pid1, pid2, pid3, pid4,wait();
+	pid1 = fork();
+    if (pid1 == 0) 
+	{
+        odd_numbers();
+        return 0;
+    }
+	pid2 = fork();
+    if (pid2 == 0) 
+	{
+        even_numbers();
+        return 0;
+    }
+	pid3 = fork();
+    if (pid3 == 0) 
+	{
+        multiples_of_3();
+        return 0;
+    }
+	pid4 = fork();
+    if (pid4 == 0) 
+	{
+        multiples_of_5();
+        return 0;
+    }
+	wait(NULL);
+    wait(NULL);
+    wait(NULL);
+    wait(NULL);
+    return 0;
+}
