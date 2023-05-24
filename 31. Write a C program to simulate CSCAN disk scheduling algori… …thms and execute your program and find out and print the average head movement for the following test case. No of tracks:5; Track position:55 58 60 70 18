@@ -1,0 +1,62 @@
+include <stdio.h>
+#include <stdlib.h>
+#define MAX_REQUESTS 200
+void cscan(int requests[], int num_requests, int head)
+{
+    int head_movement = 0;
+    int current_track = head;
+    int direction = 1;
+    int i, j;
+    for (i = 0; i < num_requests - 1; i++)
+    {
+        for (j = 0; j < num_requests - i - 1; j++)
+        {
+            if (requests[j] > requests[j + 1])
+            {
+                int temp = requests[j];
+                requests[j] = requests[j + 1];
+                requests[j + 1] = temp;
+            }
+        }
+    }
+    for (i = 0; i < num_requests; i++)
+    {
+        if (requests[i] == head)
+        {
+            break;
+        }
+    }
+    while (i < num_requests)
+    {
+        head_movement += abs(requests[i] - current_track);
+        current_track = requests[i];
+        i++;
+    }
+    direction = -1;
+    i = num_requests - 1;
+    while (i >= 0)
+    {
+        head_movement += abs(requests[i] - current_track);
+        current_track = requests[i];
+        i--;
+    }
+    printf("Total head movement: %d\n", head_movement);
+    printf("Average head movement: %.2f\n", (float)head_movement / num_requests);
+}
+int main()
+{
+    int requests[MAX_REQUESTS];
+    int num_requests,i;
+    int head;
+    printf("Enter the number of disk requests: ");
+    scanf("%d", &num_requests);
+    printf("Enter the disk requests: ");
+    for (i = 0; i < num_requests; i++)
+    {
+        scanf("%d", &requests[i]);
+    }
+    printf("Enter the initial position of the disk head: ");
+    scanf("%d", &head);
+    cscan(requests, num_requests, head);
+	return0;
+  }
