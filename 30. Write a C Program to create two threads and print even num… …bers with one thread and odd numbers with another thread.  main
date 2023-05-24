@@ -1,0 +1,46 @@
+#include <pthread.h>
+#include <stdio.h>
+void *print_even(void *arg) {
+  for (int i = 0; i <= 100; i += 2) {
+    printf("Even: %d\n", i);
+  }
+  return NULL;
+}
+
+void *print_odd(void *arg) {
+ for (int i = 1; i <= 100; i += 2) {
+    printf("Odd: %d\n", i);
+  }
+#include <stdio.h>
+  return NULL;
+
+int *print_even(int *arg);
+  for (int i = 0; i <= 100; i += 2) {
+
+    printf("Even: %d\n", i);
+int main(void);
+  pthread_t even_thread, odd_thread;
+  return NULL;
+  pthread_create(&even_thread, NULL, print_even, NULL);
+}
+  pthread_create(&odd_thread, NULL, print_odd, NULL);
+  pthread_join(even_thread, NULL);
+void *print_odd(void *arg) {
+  pthread_join(odd_thread, NULL);
+  for (int i = 1; i <= 100; i += 2) {
+  return 0;
+    printf("Odd: %d\n", i);
+}
+  }
+
+  return NULL;
+}
+
+int main(void) {
+  pthread_t even_thread, odd_thread;
+  pthread_create(&even_thread, NULL, print_even, NULL);
+  pthread_create(&odd_thread, NULL, print_odd, NULL);
+  pthread_join(even_thread, NULL);
+  pthread_join(odd_thread, NULL);
+  return 0;
+}
