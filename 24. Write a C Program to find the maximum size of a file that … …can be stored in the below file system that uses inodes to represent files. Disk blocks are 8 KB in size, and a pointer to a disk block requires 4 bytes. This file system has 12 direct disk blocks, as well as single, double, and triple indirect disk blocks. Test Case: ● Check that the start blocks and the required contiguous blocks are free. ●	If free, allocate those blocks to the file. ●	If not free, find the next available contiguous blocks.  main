@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define BLOCK_SIZE 8
+#define POINTER_SIZE 4 
+#define NUM_DIRECT_BLOCKS 12
+#define NUM_INDIRECT_BLOCKS (BLOCK_SIZE / POINTER_SIZE)
+#define NUM_DOUBLE_INDIRECT_BLOCKS (NUM_INDIRECT_BLOCKS * NUM_INDIRECT_BLOCKS)
+#define NUM_TRIPLE_INDIRECT_BLOCKS (NUM_INDIRECT_BLOCKS * NUM_INDIRECT_BLOCKS * NUM_INDIRECT_BLOCKS)
+int main()
+{
+  unsigned long long max_file_size = NUM_DIRECT_BLOCKS * BLOCK_SIZE + NUM_INDIRECT_BLOCKS * BLOCK_SIZE + NUM_DOUBLE_INDIRECT_BLOCKS * BLOCK_SIZE + NUM_TRIPLE_INDIRECT_BLOCKS * BLOCK_SIZE;
+  printf("The maximum size of a file that can be stored is %llu bytes\n", max_file_size);
+  return 0;
+}
+ 
