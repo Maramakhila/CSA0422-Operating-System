@@ -1,0 +1,24 @@
+#include <stdio.h>
+#define MAX_REQUESTS 100
+int main() 
+{
+    int requests[MAX_REQUESTS];
+    int head, num_requests,i;
+    int total_head_movement = 0;
+    printf("Enter the number of disk requests: ");
+    scanf("%d", &num_requests);
+	printf("Enter the disk requests: ");
+
+	for (i = 0; i < num_requests; i++) 
+	{
+        scanf("%d", &requests[i]);
+    }
+    for (i = 0; i < num_requests; i++) 
+	{
+        total_head_movement += abs(head - requests[i]);
+        head = requests[i];
+    }
+    printf("Total head movement: %d\n", total_head_movement);
+    printf("Average head movement: %.2f\n", (float)total_head_movement / num_requests);
+    return 0;
+}
