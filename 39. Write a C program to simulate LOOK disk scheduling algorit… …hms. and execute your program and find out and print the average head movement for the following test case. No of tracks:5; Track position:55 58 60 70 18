@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <math.h>
+#define MAX 100
+int queue[MAX], head, max_track, direction;
+int find_look_distance(int head, int direction)
+{
+    int i, seek_time = 0;
+    if (direction == 0) 
+	{
+        for (i=head; i<max_track; i++)
+            seek_time += abs(queue[i] - queue[i+1]);
+    } 
+	else 
+	{
+        for (i=head; i>0; i--)
+            seek_time += abs(queue[i] - queue[i-1]);
+    }
+    return seek_time;
+}
+void main()
+{
+    int i, j, n, total_seek_time = 0;
+    float avg_seek_time;
+    printf("Enter the number of disk requests: ");
+    scanf("%d", &n);
+    printf("Enter the position of head: ");
+    scanf("%d", &head);
+    printf("Enter the direction of head movement (0 for end, 1 for start): ");
+    scanf("%d", &direction);
+    printf("Enter the maximum track number: ");
+    scanf("%d", &max_track);
+    printf("Enter the disk requests:\n");
+    for (i=0; i<n; i++)
+        scanf("%d", &queue[i]);
+    total_seek_time = find_look_distance(head, direction);
+    avg_seek_time = (float)total_seek_time / n;
+    printf("Average seek time: %f\n", avg_seek_time);
+}
